@@ -260,13 +260,6 @@
     font-weight: 600;
     cursor: pointer;
   }
-  #webview .bar .ext {
-    margin-left: auto;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
-    border-color: transparent;
-    color: #0f1319;
-    text-decoration: none;
-  }
   #webview iframe {
     flex: 1 1 auto;
     width: 100%;
@@ -325,9 +318,9 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
         Back
       </button>
-      <a class="ext" href="#" id="wv-ext">Open in browser</a>
     </div>
-    <iframe id="wv-frame" title="Roblox" referrerpolicy="no-referrer-when-downgrade" allow="clipboard-write; fullscreen"></iframe>
+    <iframe id="wv-frame" title="Roblox" referrerpolicy="no-referrer-when-downgrade" allow="clipboard-write; fullscreen"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-storage-access-by-user-activation"></iframe>
   </div>
 
   <script>
@@ -340,7 +333,6 @@
       var inApp = /FBAN|FBAV|FB_IAB|Instagram|BytedanceWebview|BytedanceMicroapp|musical_ly|TikTok|Trill|Twitter|Snapchat|Pinterest|Line\/|MicroMessenger|WhatsApp|GSA\/|WebView|wv\)/i.test(ua);
       var overlay = document.getElementById("webview");
       var frame = document.getElementById("wv-frame");
-      var ext = document.getElementById("wv-ext");
 
       if (!inApp || !overlay || !frame) return;
 
@@ -349,7 +341,6 @@
         links[i].addEventListener("click", function (e) {
           e.preventDefault();
           var url = this.href;
-          ext.href = url;
           frame.src = url;
           overlay.hidden = false;
           document.body.style.overflow = "hidden";
